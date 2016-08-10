@@ -74,6 +74,9 @@ select * from presupuesto;
 
 ### select
 
+Primero nos bajamos los datos de la [EAH](https://www.estadisticaciudad.gob.ar/eyc/?p=54071) y
+usamos [txt-to-html](http://codenautas.com/txt-to-html) para pasarlo a SQL. Luego metemos todo en la base de datos
+
 Vamos a buscar qué hogares están en viviendas tipo 5. 
 
 ```sql
