@@ -85,6 +85,12 @@ CREATE TABLE miembros AS
     FROM eah2015_usuarios_ind;
 ```
 
+```sql
+ALTER TABLE miembros 
+  ADD FOREIGN KEY (id, nhogar) REFERENCES hogares (id, nhogar);
+```
+
+
 Vamos a actualizar el campo cant_mie.
 
 ```sql
@@ -113,9 +119,9 @@ UPDATE hogares as h
      OR cant_mie > 5;
 ```
 
-Borremos los hogares del dominio 3. 
+Borremos las viviendas de dominio 3
 
 ```sql
-DELETE FROM hogares 
+DELETE FROM viviendas
   WHERE dominio = 3;
 ```
