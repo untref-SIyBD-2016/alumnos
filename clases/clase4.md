@@ -97,3 +97,23 @@ module.exports = isosceles;
   
 Con las pruebas que pusimos funciona. Pero no está bien. Pongamos más casos de prueba
   
+## solución
+
+```js
+function esPositivo(numero){
+	return !isNaN(numero) && numero>0
+}
+
+function isosceles(a,b,c){
+	return esPositivo(a) &&
+	       esPositivo(b) &&
+	       esPositivo(c) &&
+	       (a<b+c) &&
+	       (b<a+c) &&
+		   (c<b+a) &&
+           (a==b || b==c || a==c ) && 
+		   (a!=b || b!=c || a!=c );
+}
+
+module.exports = isosceles;
+```
