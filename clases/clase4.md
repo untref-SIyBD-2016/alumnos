@@ -105,6 +105,9 @@ function esPositivo(numero){
 }
 
 function isosceles(a,b,c){
+	a=Number(a)
+	b=Number(b)
+	c=Number(c)
 	return esPositivo(a) &&
 	       esPositivo(b) &&
 	       esPositivo(c) &&
