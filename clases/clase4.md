@@ -49,3 +49,51 @@ Cantidad de errores 0
 
 c:\hecho\npm\pruebas\palindromo>
 ```
+
+### desarrollo
+
+Agreguemos ahora más casos de prueba y probemos ¿faltó probar algo?
+
+## Triángulo Isoscéles
+
+En este ejercicio vamos a probar una función que recibe 3 parámetros y contesta 
+
+  * *true* si los 3 parámetros corresponden a longitudes de un triángulo isosceles
+  * *false* en cualquier otro casos
+  
+Se define que un triángulo es un *triángulo isosceles* cuando tiene un par de lados de igual longitud y otro distinto. 
+
+Empecemos viendo la función que está en el repositorio, al tipear
+
+```sh
+cd\hecho\npm\pruebas\isosceles
+node probar.js
+```
+
+Vemos:
+```sh
+c:\hecho\npm\pruebas\isosceles>node probar.js
+Error en [ '3', '4', '4' ] se obtuvo false y se esperaba true
+Error en [ '4', '4', '4' ] se obtuvo true y se esperaba false
+Ok en no;3;4;5
+Cantidad de pruebas 3
+Cantidad de errores 2
+
+c:\hecho\npm\pruebas\isosceles>
+```
+
+La función está mal porque está reconociendo como isósceles un triangulo equilátero (con todos sus lados de igual longitud) y no reconoce un triángulo isosceles.
+
+  * Corrijamos el programa y volvamos a probar. Cambiemos el && por || (operador *and* por operador *or*). ¿Qué pasó? reconoce el isósceles pero no rechaza el equilátero. 
+  * Pidamos que haya un par distintos:
+  
+```js
+function isosceles(a,b,c){
+    return (a==b || b==c) && a != c;
+}
+
+module.exports = isosceles;
+```
+  
+Con las pruebas que pusimos funciona. Pero no está bien. Pongamos más casos de prueba
+  
