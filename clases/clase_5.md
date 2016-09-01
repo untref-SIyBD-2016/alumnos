@@ -1,4 +1,4 @@
-´´´sql
+```sql
 SELECT nieto.id, nieto.nhogar
   FROM miembros as jefe 
     inner join miembros as nieto 
@@ -20,5 +20,34 @@ SELECT hijo.id, hijo.nhogar
   WHERE padre.parentes_2=6 
     and hijo.parentes_2=3
   ORDER BY hijo.id, hijo.nhogar  
+
+-- hay repetidos
+
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+  ORDER BY hijo.id, hijo.nhogar  
+
+WITH hogares_AN as (
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+UNION 
+SELECT DISTINCT nieto.id, nieto.nhogar
+  FROM miembros as nieto 
+  WHERE nieto.parentes_2=5
+ORDER BY id, nhogar) 
+SELECT sum(fexp)*100.0/
+     (SELECT SUM(fexp) FROM hogares AS h INNER JOIN viviendas AS v ON v.id=h.id)
+  FROM hogares_AN AS h inner join viviendas AS v ON v.id=h.id
+  
 ```
+
+
 
