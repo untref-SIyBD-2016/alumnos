@@ -33,3 +33,22 @@ npm start
 ```
 
 Luego revisamos (editamos) el archivo de configuración llamado `local-config-db` para que coincidan el nombre de la base de datos y demás parámetros.
+
+## Alternativas de SQL
+
+```sql
+select comuna,
+       sum(case when e2=3 then fexp else 0 end) as numerador,
+       sum(fexp) as denominador
+  from miembros
+  where edad>=3
+  group by comuna
+  order by comuna;
+
+select comuna, sum(fexp) as numerador,
+  (select sum(fexp) from miembros z where edad>=3 and z.comuna=x.comuna) as denominador
+  from miembros as x
+  where edad>=3 and e2=3
+  group by comuna
+  order by comuna;
+```
